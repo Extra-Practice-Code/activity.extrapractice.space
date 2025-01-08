@@ -1,0 +1,32 @@
+*, *:before, *:after { box-sizing: border-box; }
+body {
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    margin: 0;
+    background: black;
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale; 
+    -webkit-text-size-adjust: none;
+    word-break: break-all;
+}
+.floating-image {
+    position: absolute;
+    max-width: 300px;
+    max-height: 300px;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+#thumbs {
+    display: none;
+}
+#link-to-activity {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    width: 15px;
+    height: 15px;
+    background-color: #00943f;
+    border-radius: 50%;
+    z-index: 1000;
+}
