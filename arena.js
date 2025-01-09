@@ -44,8 +44,8 @@ const FADE_DURATION = 2000; // 2 seconds fade in/out
 const DISPLAY_DURATION = 8000; // 8 seconds display time
 
 function getRandomPosition() {
-    const maxWidth = window.innerWidth - (PADDING * 2) - 300;
-    const maxHeight = window.innerHeight - (PADDING * 2) - 300;
+    const maxWidth = window.innerWidth - (PADDING * 2) - 400;
+    const maxHeight = window.innerHeight - (PADDING * 2) - 400;
     return {
         x: PADDING + Math.random() * maxWidth,
         y: PADDING + Math.random() * maxHeight
