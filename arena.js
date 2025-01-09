@@ -17,9 +17,6 @@ loadingEl.style.position = 'fixed';
 loadingEl.style.top = '50%';
 loadingEl.style.left = '50%';
 loadingEl.style.transform = 'translate(-50%, -50%)';
-loadingEl.style.color = 'white';
-loadingEl.style.fontSize = '20px';
-loadingEl.style.fontFamily = 'sans-serif';
 loadingEl.innerHTML = 'loading activity...';
 document.body.appendChild(loadingEl);
 
@@ -43,8 +40,8 @@ async function fetchPage(page = 1, per = 100) {
 
 // Add these new functions and variables
 const PADDING = 50; // Minimum distance from edges
-const FADE_DURATION = 1000; // 1 second fade in/out
-const DISPLAY_DURATION = 4000; // 4 seconds display time
+const FADE_DURATION = 2000; // 2 seconds fade in/out
+const DISPLAY_DURATION = 8000; // 8 seconds display time
 
 function getRandomPosition() {
     const maxWidth = window.innerWidth - (PADDING * 2) - 300;
@@ -82,33 +79,49 @@ function showFloatingImage() {
     // Take the next image from the queue
     const nextImage = imageQueue.pop();
     const imageUrl = nextImage.image.display.url;
+    const imageTitle = nextImage.title || 'Untitled';
+    
+    // Create link element
+    const linkElement = document.createElement('a');
+    linkElement.href = `https://www.are.na/block/${nextImage.id}`;
+    linkElement.target = '_blank';
+    linkElement.style.position = 'absolute';
     
     const imgElement = document.createElement('img');
     imgElement.src = imageUrl;
     imgElement.classList.add('floating-image');
     
     const pos = getRandomPosition();
-    imgElement.style.left = `${pos.x}px`;
-    imgElement.style.top = `${pos.y}px`;
+    linkElement.style.left = `${pos.x}px`;
+    linkElement.style.top = `${pos.y}px`;
     
-    document.body.appendChild(imgElement);
+    // Append image to link, then link to body
+    linkElement.appendChild(imgElement);
+    document.body.appendChild(linkElement);
 
-    // Fade in
+    // Update caption
+    const captionEl = document.querySelector('#caption');
+    captionEl.textContent = imageTitle;
+    captionEl.style.opacity = '0';
+
+    // Fade in image and caption
     setTimeout(() => {
         imgElement.style.opacity = '1';
+        captionEl.style.opacity = '1';
     }, 100);
 
     // Start fade out
     setTimeout(() => {
         imgElement.style.opacity = '0';
+        captionEl.style.opacity = '0';
         // Remove element after fade out
         setTimeout(() => {
-            imgElement.remove();
+            linkElement.remove();  // Remove link element instead of image
         }, FADE_DURATION);
     }, DISPLAY_DURATION);
 
     // Queue next image
-    setTimeout(showFloatingImage, 2000); // Start new image every 2 seconds
+    setTimeout(showFloatingImage, 4000); // Start new image every 4 seconds
 }
 
 // Main function to fetch all contents

@@ -3,7 +3,8 @@ body {
     font-family: Arial, sans-serif;
     font-size: 12px;
     margin: 0;
-    background: black;
+    color: #fff;
+    background-color: #000;
     overflow: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale; 
@@ -12,10 +13,11 @@ body {
 }
 .floating-image {
     position: absolute;
-    max-width: 300px;
-    max-height: 300px;
+    max-width: 400px;
+    max-height: 400px;
     opacity: 0;
     transition: opacity 1s ease-in-out;
+    cursor: pointer;
 }
 #thumbs {
     display: none;
@@ -29,4 +31,16 @@ body {
     background-color: #00943f;
     border-radius: 50%;
     z-index: 1000;
+}
+#loading {
+    text-align: center;
+    color: #fff;
+    font-size: 18px;
+}
+#caption {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    color: #fff;
+    font-size: 14px;
 }
